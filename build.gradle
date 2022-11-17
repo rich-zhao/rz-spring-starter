@@ -1,0 +1,37 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.5'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'java'
+}
+
+group = 'com.richardz'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'	//starter library for JPA
+	// implementation 'org.springframework.boot:spring-boot-starter-data-jdbc' //if you want to use plain old jdbc... (starter-data-jpa is easier) 
+	implementation 'org.springframework.boot:spring-boot-starter-web'		//starter library for REST and web
+	implementation 'org.liquibase:liquibase-core'							//library for liquibase / database migration
+	// implementation 'com.google.code.gson:gson:2.10'							//library for json parsing, if preferred. spring uses jackson by default (ObjectMapper)
+	implementation("com.google.guava:guava:31.1-jre")						//core / utility collections. very useful for faster development. could use apache commons as an alternative
+
+	compileOnly 'org.projectlombok:lombok'									//library for speeding up development via machine-generated code by annotations
+	runtimeOnly 'com.h2database:h2'											//in-memory database for quick development and testing. not for prod
+	annotationProcessor 'org.projectlombok:lombok'							//need this for lombok
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'	//libraries for testing 
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

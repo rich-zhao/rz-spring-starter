@@ -8,8 +8,7 @@ databaseChangeLog:
             columns:  
               -  column:  
                   name:  id  
-                  type:  int  
-                  autoIncrement:  true  
+                  type:  uuid
                   constraints:  
                     primaryKey:  true  
                     nullable:  false  
@@ -20,4 +19,4 @@ databaseChangeLog:
                   name:  last_name  
                   type:  varchar(50)  
                   constraints:  
-                    nullable:  false  
+                    nullable:  false
